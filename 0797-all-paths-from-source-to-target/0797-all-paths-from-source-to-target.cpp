@@ -6,7 +6,6 @@ vector<int>t;
       t.push_back(i);
       if(i==v.size()-1){
         ans.push_back(t);
-          return ;
       }
       for(auto &j :v[i]){
             dfs(j,v);
