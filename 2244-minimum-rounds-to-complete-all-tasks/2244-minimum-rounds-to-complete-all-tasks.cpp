@@ -2,30 +2,27 @@ class Solution {
 public:
     int minimumRounds(vector<int>& v) {
           
-        int ans=0;
+    int ans=0;
 priority_queue<pair<int,int>>pq;
 map<int,int>mp;
 for(auto &i :v)mp[i]++;
-        
-for(auto &[x,y] :mp){
-    pq.push({x,y});
-}
-        
-while(!pq.empty()){
-    ++ans;
-    auto [x,y]=pq.top();
-    pq.pop();
-    if(y==1)return -1;
-    if(y%2==0){
-        y%3 ? y-=2 : y-=3 ;
+ 
+        for(auto & [x,y] : mp){
+           
+            if(y==1)return -1;
+            else if(y%3==0){
+                ans+=y/3; 
+            }
+            else{
+                ans+=(y/3)+1 ;
+            }
+        }    
+        return ans;
     }
-    else{
-        y-=3;
-    }
-    if(y)pq.push({x,y});
+ /*       
+7 ->> 11 11 111
 
-}
-return ans;
-
-    }
+8 ->> 111 111 11
+*/
+        
 };
