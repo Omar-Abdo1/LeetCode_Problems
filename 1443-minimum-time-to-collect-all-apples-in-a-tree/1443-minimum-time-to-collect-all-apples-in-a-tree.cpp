@@ -15,7 +15,7 @@ public:
      void dfs2(int i,int p,vector<bool>&go){
         if( i!=p && go[i]){
             ++cnt;
-            go[i]=1;
+            go[i]=0;
         }
         for(auto &j:v[i])if(j!=p){
             dfs2(j,i,go);
