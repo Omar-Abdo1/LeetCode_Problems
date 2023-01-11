@@ -13,7 +13,7 @@ public:
     }
     
      void dfs2(int i,int p,vector<bool>&go){
-        if(go[i]){
+        if( i!=p && go[i]){
             ++cnt;
             go[i]=1;
         }
@@ -31,8 +31,6 @@ public:
         }
         dfs(0,0,hasApple);
         dfs2(0,0,hasApple);
-        if(--cnt*2>0)return 2*cnt;
-        else return 0;
-
+      return 2*cnt;
     }
 };
