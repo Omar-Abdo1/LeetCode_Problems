@@ -13,10 +13,7 @@ public:
     }
     
      void dfs2(int i,int p,vector<bool>&go){
-        if( i!=p && go[i]){
-            ++cnt;
-            go[i]=0;
-        }
+        cnt+=go[i];
         for(auto &j:v[i])if(j!=p){
             dfs2(j,i,go);
         }
@@ -31,6 +28,7 @@ public:
         }
         dfs(0,0,hasApple);
         dfs2(0,0,hasApple);
-      return 2*cnt;
+        if(--cnt*2>0)return 2*cnt; // edges :)
+        return 0;
     }
 };
