@@ -1,33 +1,21 @@
 class Solution {
-    private :
-    int dp[101][27];
 public:
-    string s;
-    bool valid(string t){
-        for(int i=0;i<t.size()-1;++i)
-            if(t[i]=='0')return 0;
-     int me=stoi(t);
-        return me && me<=26;
-    }
-    int rec(int i, int ya){
-       if(i==s.size())return 1;
-      int &ret=dp[i][ya];
-        if(~ret)return ret;
-        ret=0;
-        string cur="";
-        for(int j=i;j<s.size();++j){
-            cur+=s[j];
-            if(cur.size()<=2 && valid(cur)){
-                ret+=rec(i+cur.size(),stoi(cur));
-            }
+    int numDecodings(string s) {
+     int n=s.size();
+        int dp[n+9];
+        memset(dp,0,sizeof dp);
+        dp[n]=1;
+        for(int i=n-1;i>=0;--i){
+            if(s[i]!='0')
+            dp[i]+=dp[i+1];
+            
+            if(i+1<s.size() && s[i]=='1' || s[i]=='2' && s[i+1]<='6')
+                dp[i]+=dp[i+2];
         }
-        return ret;
-    }
+        return dp[0];
+
     
     
-    int numDecodings(string t) {
-        s=t;   
-        memset(dp,-1,sizeof dp);
-        return rec(0,0);
+    
     }
 };
