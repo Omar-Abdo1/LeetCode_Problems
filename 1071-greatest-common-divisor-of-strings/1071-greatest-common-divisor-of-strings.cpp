@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool can(string &s, string &t, string &pre){
-    if(s.size()%pre.size() || t.size()%pre.size())return 0;
    
     for(int i=0;i<s.size();i+=pre.size()){
     string me=s.substr(i,pre.size());
@@ -17,13 +16,9 @@ public:
         
     }
     string gcdOfStrings(string s, string t) {
-    string q;
-    string pre;
-      if(s.size()<t.size())swap(s,t);
-     for(int i=0;i<t.size();++i){
-         q+=s[i];
-         if(can(s,t,q))pre=q;
-     }
-        return pre;
+     int sz=__gcd(s.size(),t.size());
+     string me=s.substr(0,sz);
+     if(can(s,t,me))return me;
+        else return "";
     }
 };
