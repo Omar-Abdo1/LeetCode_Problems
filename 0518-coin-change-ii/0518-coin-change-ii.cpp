@@ -1,18 +1,16 @@
 class Solution {
 public:
-    vector<int>v;
-    int k;
-    int dp[5005][305];
-    int rec(int rem,int i){
-        if(rem==0)return 1;
-        if( rem<0 or i==v.size())return 0;
-      if(~dp[rem][i])return dp[rem][i];
-        return dp[rem][i]=rec(rem-v[i],i)+rec(rem,i+1);
-    }
-    int change(int amount, vector<int>& coins) {
-        k=amount;
-        v=coins;
-        memset(dp,-1,sizeof dp);
-    return rec(k,0);
+    int dp[5005];
+    int change(int k, vector<int>& v) {
+       dp[0]=1;
+        int n=v.size();
+        for(int i=0;i<n;++i){
+          
+            for(int j=1;j<=k;++j){
+                if(j>=v[i])
+                    dp[j]+=dp[j-v[i]];
+            }
+        }
+        return dp[k];        
     }
 };
