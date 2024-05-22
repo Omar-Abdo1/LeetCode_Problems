@@ -14,7 +14,6 @@ public:
             
             if(idx==s.size()){
                 ans.push_back(temp);
-                return;
             }
             
             string t;
