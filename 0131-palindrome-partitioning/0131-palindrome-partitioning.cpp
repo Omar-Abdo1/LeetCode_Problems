@@ -5,9 +5,13 @@ public:
         vector<string>temp;
         
         function<bool(string)>pal=[&](string t){
-            string tt = t;
-            reverse(tt.begin(),tt.end());
-            return tt==t;
+            int i=0,j=t.size()-1;
+            while(i<=j){
+                if(t[i]==t[j])
+                    ++i,--j;
+                else return 0;
+            }
+            return 1;
         };
         
         function<void(int)>rec=[&](int idx){
