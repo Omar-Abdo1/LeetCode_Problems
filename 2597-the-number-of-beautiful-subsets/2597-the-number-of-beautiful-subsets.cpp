@@ -2,16 +2,18 @@ class Solution {
 public:
     int beautifulSubsets(vector<int>& v, int k) {
         int n = v.size(),ans=0;
-        unordered_map<int,int>mp;
+       unordered_map<int,int>mp;
         function<int(int)>rec=[&](int idx)->int{
             if(idx==n)
                 return 1;
             int ret = 0;
-            if(!mp[v[idx]-k] && !mp[v[idx]+k])
+            if(mp.find(v[idx]-k)==mp.end() && mp.find(v[idx]+k)==mp.end())
             {
                 ++mp[v[idx]];
                 ret+=rec(idx+1);
                 --mp[v[idx]];
+                if(mp[v[idx]]==0)
+                    mp.erase(v[idx]);
             }
             ret+=rec(idx+1);
             return ret;
